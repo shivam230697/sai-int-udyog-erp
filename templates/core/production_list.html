@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block title %}Production register · Sai Int Udyog{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4"><div><h1 class="h2 page-title mb-1">Production register</h1><p class="text-secondary mb-0">Track green bricks, kiln loads, good output and losses.</p></div><a class="btn btn-dark" href="{% url 'production-create' %}">＋ New batch</a></div>
+<div class="card border-0 shadow-sm rounded-4"><div class="card-body p-0"><div class="table-responsive"><table class="table table-hover align-middle mb-0"><thead class="table-light"><tr><th class="ps-4">Batch no.</th><th>Start date</th><th>Kiln</th><th>Status</th><th class="text-end">Loaded</th><th class="text-end">Good</th><th class="text-end">Damaged</th><th class="text-end pe-4">Rejected</th></tr></thead><tbody>
+{% for batch in batches %}<tr><td class="ps-4 fw-semibold">{{ batch.batch_no }}</td><td>{{ batch.start_date|date:"d M Y" }}</td><td>{{ batch.kiln_name|default:"—" }}</td><td><span class="badge text-bg-light">{{ batch.get_status_display }}</span></td><td class="text-end">{{ batch.loaded_bricks|floatformat:0 }}</td><td class="text-end text-success fw-semibold">{{ batch.good_bricks|floatformat:0 }}</td><td class="text-end">{{ batch.damaged_bricks|floatformat:0 }}</td><td class="text-end pe-4">{{ batch.rejected_bricks|floatformat:0 }}</td></tr>
+{% empty %}<tr><td colspan="8" class="text-center py-5"><div class="fw-semibold">No batches recorded yet</div><div class="text-secondary small my-2">Create a batch to start tracking your kiln output.</div><a class="btn btn-sm btn-dark mt-2" href="{% url 'production-create' %}">Create first batch</a></td></tr>{% endfor %}
+</tbody></table></div></div></div>
+{% endblock %}

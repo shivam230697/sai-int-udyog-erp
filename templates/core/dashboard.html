@@ -20,7 +20,7 @@
     </tbody></table></div>
   </div></div></div>
   <div class="col-xl-4"><div class="card metric-card h-100"><div class="card-body p-4"><h2 class="h5 fw-bold mb-3">Quick actions</h2>
-    <div class="d-grid gap-2"><a class="btn btn-outline-dark text-start" href="{% url 'production-create' %}">＋ Record kiln production</a><a class="btn btn-outline-dark text-start" href="{% url 'party-create' %}?party_type=customer">＋ Add customer</a><a class="btn btn-outline-dark text-start" href="{% url 'sale-create' %}">＋ Create sales invoice</a><a class="btn btn-outline-dark text-start" href="{% url 'payment-create' %}">＋ Record payment</a><a class="btn btn-outline-dark text-start" href="{% url 'expense-create' %}">＋ Record expense</a></div>
+    <div class="d-grid gap-2"><a class="btn btn-outline-dark text-start" href="{% url 'production-create' %}">＋ Record kiln production</a><a class="btn btn-outline-dark text-start" href="/admin/core/party/add/">＋ Add customer or supplier</a><a class="btn btn-outline-dark text-start" href="/admin/core/sale/add/">＋ Create sales invoice</a><a class="btn btn-outline-dark text-start" href="/admin/core/payment/add/">＋ Record payment</a><a class="btn btn-outline-dark text-start" href="/admin/core/expense/add/">＋ Record expense</a></div>
     <hr><div class="d-flex justify-content-between"><span class="text-secondary">Expenses this month</span><strong>₹{{ expenses_month|floatformat:2 }}</strong></div>
     <p class="small text-secondary mt-3 mb-0">Dashboard totals depend on entries saved in the ERP. Automated accounting and stock posting will be enabled in a subsequent milestone.</p>
   </div></div></div>
