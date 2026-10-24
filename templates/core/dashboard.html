@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block title %}Dashboard · Sai Int Udyog{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-start gap-3 mb-4">
+  <div><div class="text-secondary small mb-1">{{ today|date:"l, d M Y" }}</div><h1 class="h2 page-title mb-1">Factory overview</h1><p class="text-secondary mb-0">A live snapshot of your brick manufacturing business.</p></div>
+  <a href="{% url 'production-create' %}" class="btn btn-dark">＋ Record production</a>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-6 col-xl-3"><div class="card metric-card h-100"><div class="card-body"><div class="text-secondary small">Good bricks today</div><div class="display-6 fw-bold mt-2">{{ production_today|floatformat:0 }}</div><div class="small text-secondary mt-2">Production register</div></div></div></div>
+  <div class="col-6 col-xl-3"><div class="card metric-card h-100"><div class="card-body"><div class="text-secondary small">Good bricks this month</div><div class="display-6 fw-bold mt-2">{{ production_month|floatformat:0 }}</div><div class="small text-secondary mt-2">Month to date</div></div></div></div>
+  <div class="col-6 col-xl-3"><div class="card metric-card h-100"><div class="card-body"><div class="text-secondary small">Available stock</div><div class="display-6 fw-bold mt-2">{{ stock_balance|floatformat:0 }}</div><div class="small text-secondary mt-2">Bricks · stock movements</div></div></div></div>
+  <div class="col-6 col-xl-3"><div class="card metric-card h-100"><div class="card-body"><div class="text-secondary small">Sales this month</div><div class="h2 fw-bold mt-3">₹{{ sales_value_month|floatformat:2 }}</div><div class="small text-secondary mt-2">{{ sales_count_month }} posted invoices</div></div></div></div>
+</div>
+<div class="row g-3">
+  <div class="col-xl-8"><div class="card metric-card h-100"><div class="card-body p-4">
+    <div class="d-flex justify-content-between align-items-center mb-3"><div><h2 class="h5 fw-bold mb-1">Recent production batches</h2><p class="small text-secondary mb-0">Kiln output and quality tracking</p></div><a href="{% url 'production-list' %}" class="small">View register →</a></div>
+    <div class="table-responsive"><table class="table align-middle"><thead><tr><th>Batch</th><th>Date</th><th>Status</th><th class="text-end">Good bricks</th></tr></thead><tbody>
+    {% for batch in recent_batches %}<tr><td class="fw-semibold">{{ batch.batch_no }}</td><td>{{ batch.start_date|date:"d M Y" }}</td><td><span class="badge text-bg-light">{{ batch.get_status_display }}</span></td><td class="text-end">{{ batch.good_bricks|floatformat:0 }}</td></tr>
+    {% empty %}<tr><td colspan="4" class="text-center text-secondary py-4">No production batches yet. Start by recording your first batch.</td></tr>{% endfor %}
+    </tbody></table></div>
+  </div></div></div>
+  <div class="col-xl-4"><div class="card metric-card h-100"><div class="card-body p-4"><h2 class="h5 fw-bold mb-3">Quick actions</h2>
+    <div class="d-grid gap-2"><a class="btn btn-outline-dark text-start" href="{% url 'production-create' %}">＋ Record kiln production</a><a class="btn btn-outline-dark text-start" href="{% url 'party-create' %}?party_type=customer">＋ Add customer</a><a class="btn btn-outline-dark text-start" href="{% url 'sale-create' %}">＋ Create sales invoice</a><a class="btn btn-outline-dark text-start" href="{% url 'payment-create' %}">＋ Record payment</a><a class="btn btn-outline-dark text-start" href="{% url 'expense-create' %}">＋ Record expense</a></div>
+    <hr><div class="d-flex justify-content-between"><span class="text-secondary">Expenses this month</span><strong>₹{{ expenses_month|floatformat:2 }}</strong></div>
+    <p class="small text-secondary mt-3 mb-0">Dashboard totals depend on entries saved in the ERP. Automated accounting and stock posting will be enabled in a subsequent milestone.</p>
+  </div></div></div>
+</div>
+{% endblock %}
