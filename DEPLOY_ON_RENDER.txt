@@ -1,0 +1,19 @@
+SAI INT UDYOG ERP — SIMPLE RENDER DEPLOY
+
+1. Extract this ZIP.
+2. Upload the contents of the 'sai_int_udyog_erp' folder to a NEW GitHub repository.
+   Make sure manage.py and render.yaml are at the repository root (not inside another nested folder).
+3. Open https://render.com and sign in.
+4. Choose New + -> Blueprint.
+5. Connect GitHub and select your repository.
+6. Render reads render.yaml. Review the services and click Apply.
+7. Wait for deployment to finish. Open the web service URL ending in onrender.com.
+8. To create an admin login, open the web service in Render, open its Shell, and run:
+   python manage.py createsuperuser
+9. Open https://YOUR-APP.onrender.com/admin/ and sign in.
+
+Notes:
+- This is a starter/demo ERP, not production-ready accounting software.
+- Free Render PostgreSQL databases may expire after 30 days; check current Render pricing/limits.
+- Never store real customer, tax, payment, or business data in this demo until security, backups,
+  accounting posting, inventory posting, and GST workflows have been properly completed.
