@@ -1,0 +1,4 @@
+{% extends "base.html" %}{% block title %}Reports · Sai Int Udyog{% endblock %}{% block content %}
+<div class="mb-4"><h1 class="h2 page-title">Reports overview</h1><p class="text-secondary mb-0">Summary of recorded transactions as of {{ today|date:"d M Y" }}.</p></div>
+<div class="row g-3">{% for label,value,count in report_cards %}<div class="col-md-4"><div class="card metric-card h-100"><div class="card-body"><div class="text-secondary">{{ label }}</div><div class="h3 fw-bold mt-3">₹{{ value|floatformat:2 }}</div><div class="small text-secondary">{{ count }} records</div></div></div></div>{% endfor %}</div>
+<div class="alert alert-warning mt-4">This is a basic totals report, not a complete profit-and-loss statement or GST return. Automatic ledger posting is not implemented yet.</div>{% endblock %}
